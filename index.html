@@ -1,65 +1,302 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hossam & Rodica Wedding</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-*{box-sizing:border-box}
-body{
- margin:0;background:#080808;color:#d8bd7b;
- font-family:'Amiri',serif;text-align:center;
- min-height:100vh;padding:25px 14px;
- display:flex;justify-content:center;align-items:center;
+* {
+  box-sizing: border-box;
 }
-.card{
- width:100%;max-width:430px;
- min-height:720px;padding:45px 23px;
- border:1px solid #b99a58;
- outline:1px solid #b99a58;
- outline-offset:-9px;
- display:flex;flex-direction:column;
- justify-content:center;align-items:center;
- background:linear-gradient(145deg,#111,#050505);
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle, #651b32, #350817, #1c050d);
+  color: #d9bb77;
+  font-family: Georgia, serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 15px;
+  overflow-x: hidden;
 }
-.small{font-size:17px;letter-spacing:3px}
-.ornament{font-size:30px;margin:15px}
-h1{
- font-family:'Cormorant Garamond',serif;
- font-size:43px;font-weight:500;
- direction:ltr;margin:12px 0;color:#e4c982;
+
+.scene {
+  width: 100%;
+  max-width: 390px;
+  text-align: center;
 }
-h2{font-size:25px;font-weight:400;margin:10px}
-.line{width:65%;height:1px;background:#aa8b4d;margin:20px}
-p{font-size:20px;line-height:1.9;margin:8px}
-.date{font-size:25px;margin:15px}
-.place{font-size:19px;line-height:1.9}
-.footer{font-size:16px;margin-top:25px;color:#bba574}
+
+.top-decoration {
+  font-size: 28px;
+  letter-spacing: 10px;
+  color: #e3c47d;
+  margin-bottom: 15px;
+}
+
+.heading {
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  color: #e3c47d;
+}
+
+.envelope {
+  position: relative;
+  height: 245px;
+  margin-top: 100px;
+  background: #500e25;
+  border: 2px solid #c5a45e;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px #0009;
+  perspective: 1000px;
+}
+
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #701d38;
+  clip-path: polygon(0 0, 100% 0, 50% 65%);
+  transform-origin: top;
+  transition: transform 1s ease;
+  z-index: 4;
+  border-top: 1px solid #d9bb77;
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, #701d38, #350817);
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+}
+
+.seal {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 62px;
+  height: 62px;
+  border: 2px solid #e3c47d;
+  border-radius: 50%;
+  background: #8c642d;
+  color: #fff0c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 5;
+  box-shadow: 0 0 15px #0008;
+}
+
+.card {
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  min-height: 225px;
+  top: -10px;
+  background: #f7f0df;
+  color: #94713a;
+  border: 2px solid #b99a55;
+  outline: 1px solid #b99a55;
+  outline-offset: 4px;
+  padding: 20px 10px;
+  transition: all 1.2s ease;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.card h2 {
+  font-size: 29px;
+  direction: ltr;
+  font-weight: normal;
+  margin: 15px 0;
+}
+
+.card p {
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  color: #51432b;
+  line-height: 2;
+}
+
+.ornament {
+  margin: 12px auto;
+  color: #bd9a53;
+  font-size: 20px;
+}
+
+.date {
+  font-size: 25px;
+  margin: 18px 0;
+  color: #a27c3c;
+  direction: ltr;
+}
+
+.details {
+  line-height: 2.2;
+  font-size: 15px;
+  color: #51432b;
+  font-family: Tahoma, sans-serif;
+}
+
+.signature {
+  margin-top: 25px;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
+
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
+
+.envelope.open .seal {
+  opacity: 0;
+  transition: .3s;
+}
+
+.envelope.open .card {
+  min-height: 510px;
+  top: -405px;
+  opacity: 1;
+  visibility: visible;
+  z-index: 6;
+  padding: 28px 15px;
+  box-shadow: 0 10px 30px #0009;
+}
+
+.hint {
+  margin-top: 30px;
+  color: #e0c78d;
+  font-size: 16px;
+  animation: pulse 1.5s infinite;
+  font-family: Tahoma, sans-serif;
+}
+
+@keyframes pulse {
+  50% { opacity: .4; }
+}
+
+.bottom-decoration {
+  margin-top: 35px;
+  font-size: 19px;
+  letter-spacing: 5px;
+  color: #e3c47d;
+}
+
+@media(max-width:400px) {
+  .envelope.open .card {
+    top: -405px;
+  }
+
+  .card h2 {
+    font-size: 25px;
+  }
+}
 </style>
 </head>
+
 <body>
-<div class="card">
- <div class="small">بسم الله المحبة والبركة</div>
- <div class="ornament">✧ ❦ ✧</div>
- <p>بكل الحب والفرح</p>
- <p>يسعدنا دعوتكم لمشاركتنا</p>
- <h2>صلاة الإكليل</h2>
- <div class="line"></div>
- <h1>Hossam & Rodica</h1>
- <div class="ornament">❦</div>
- <p>وذلك يوم الخميس</p>
- <div class="date">12 نوفمبر 2026</div>
- <p>في تمام الساعة</p>
- <h2>8:00 مساءً</h2>
- <div class="line"></div>
- <div class="place">
- مطرانية أم المحبة الإلهية<br>
- للأقباط الكاثوليك بأسيوط
- </div>
- <div class="ornament">✧</div>
- <p>حضوركم يزيد فرحتنا جمالاً</p>
- <div class="footer">With Love • Hossam & Rodica</div>
+
+<div class="scene">
+
+  <div class="top-decoration">✧ ❦ ✧</div>
+
+  <div class="heading">
+    YOU ARE INVITED
+  </div>
+
+  <div class="envelope" id="envelope"
+       onclick="openInvitation()">
+
+    <div class="card">
+
+      <div class="ornament">✦ WEDDING INVITATION ✦</div>
+
+      <p>بكل الحب والفرح</p>
+
+      <h2>Hossam & Rodica</h2>
+
+      <div class="ornament">❧ ✦ ❧</div>
+
+      <p>
+        يسعدنا دعوتكم لمشاركتنا فرحة زفافنا
+        <br>
+        وحضور صلاة الإكليل
+      </p>
+
+      <div class="date">12 . 11 . 2026</div>
+
+      <p>الساعة 8 مساءً</p>
+
+      <div class="ornament">──── ✦ ────</div>
+
+      <div class="details">
+        كاتدرائية أم المحبة الإلهية
+        <br>
+        للأقباط الكاثوليك بأسيوط
+        <br><br>
+        حفل الاستقبال
+        <br>
+        فندق رويال
+      </div>
+
+      <div class="signature">
+        WITH LOVE & JOY
+      </div>
+
+      <div class="ornament">❦</div>
+
+    </div>
+
+    <div class="flap"></div>
+
+    <div class="seal">H&R</div>
+
+  </div>
+
+  <div class="hint" id="hint">
+    اضغطي لفتح الدعوة ♡
+  </div>
+
+  <div class="bottom-decoration">
+    ✦ H & R ✦
+  </div>
+
 </div>
+
+<audio id="weddingMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openInvitation() {
+
+  const envelope = document.getElementById("envelope");
+
+  if (envelope.classList.contains("open")) return;
+
+  envelope.classList.add("open");
+
+  document.getElementById("hint").style.display = "none";
+
+  const music = document.getElementById("weddingMusic");
+
+  music.volume = 0.5;
+
+  music.play().catch(() => {
+    console.log("تعذر تشغيل الموسيقى");
+  });
+}
+</script>
+
 </body>
 </html>
