@@ -1,436 +1,302 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#090806">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hossam & Rodica Wedding</title>
 
-  <title>دعوة زفاف حسام ورودكا</title>
+<style>
+* {
+  box-sizing: border-box;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle, #651b32, #350817, #1c050d);
+  color: #d9bb77;
+  font-family: Georgia, serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 15px;
+  overflow-x: hidden;
+}
 
-  <style>
-    :root {
-      --gold: #d7bd7a;
-      --gold-light: #f0dda5;
-      --gold-dark: #9e8046;
-      --background: #090806;
-      --card: #11100d;
-      --muted: #c3b58f;
-    }
+.scene {
+  width: 100%;
+  max-width: 390px;
+  text-align: center;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+.top-decoration {
+  font-size: 28px;
+  letter-spacing: 10px;
+  color: #e3c47d;
+  margin-bottom: 15px;
+}
 
-    body {
-      min-height: 100vh;
-      margin: 0;
-      padding: 32px 16px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: var(--gold);
-      background:
-        radial-gradient(ellipse at top, rgba(135, 105, 47, 0.13), transparent 55%),
-        var(--background);
-      font-family: "Amiri", serif;
-      text-align: center;
-    }
+.heading {
+  font-size: 13px;
+  letter-spacing: 4px;
+  margin-bottom: 10px;
+  color: #e3c47d;
+}
 
-    .invitation {
-      position: relative;
-      isolation: isolate;
-      width: 100%;
-      max-width: 470px;
-      padding: 50px 28px 34px;
-      overflow: hidden;
-      border: 1px solid var(--gold-dark);
-      outline: 1px solid var(--gold-dark);
-      outline-offset: -10px;
-      background: linear-gradient(145deg, #17150f, #090908 70%);
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.55);
-      animation: appear 900ms ease both;
-    }
+.envelope {
+  position: relative;
+  height: 245px;
+  margin-top: 100px;
+  background: #500e25;
+  border: 2px solid #c5a45e;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 10px 40px #0009;
+  perspective: 1000px;
+}
 
-    .invitation::before,
-    .invitation::after {
-      position: absolute;
-      z-index: -1;
-      color: rgba(215, 189, 122, 0.08);
-      font-size: 130px;
-      line-height: 1;
-      pointer-events: none;
-    }
+.flap {
+  position: absolute;
+  inset: 0;
+  background: #701d38;
+  clip-path: polygon(0 0, 100% 0, 50% 65%);
+  transform-origin: top;
+  transition: transform 1s ease;
+  z-index: 4;
+  border-top: 1px solid #d9bb77;
+}
 
-    .invitation::before {
-      content: "❦";
-      top: 10px;
-      right: 12px;
-      transform: rotate(25deg);
-    }
+.envelope:before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(140deg, #701d38, #350817);
+  clip-path: polygon(0 0, 50% 55%, 100% 0, 100% 100%, 0 100%);
+  z-index: 3;
+}
 
-    .invitation::after {
-      content: "❦";
-      bottom: 4px;
-      left: 12px;
-      transform: rotate(205deg);
-    }
+.seal {
+  position: absolute;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 62px;
+  height: 62px;
+  border: 2px solid #e3c47d;
+  border-radius: 50%;
+  background: #8c642d;
+  color: #fff0c5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  z-index: 5;
+  box-shadow: 0 0 15px #0008;
+}
 
-    .eyebrow {
-      color: var(--gold-light);
-      font-size: 18px;
-      letter-spacing: 2px;
-    }
+.card {
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  min-height: 225px;
+  top: -10px;
+  background: #f7f0df;
+  color: #94713a;
+  border: 2px solid #b99a55;
+  outline: 1px solid #b99a55;
+  outline-offset: 4px;
+  padding: 20px 10px;
+  transition: all 1.2s ease;
+  z-index: 2;
+  opacity: 0;
+  visibility: hidden;
+}
 
-    .ornament {
-      margin: 15px 0;
-      color: var(--gold);
-      font-size: 30px;
-    }
+.card h2 {
+  font-size: 29px;
+  direction: ltr;
+  font-weight: normal;
+  margin: 15px 0;
+}
 
-    .intro {
-      margin: 8px 0;
-      color: var(--muted);
-      font-size: 21px;
-      line-height: 1.8;
-    }
+.card p {
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  color: #51432b;
+  line-height: 2;
+}
 
-    .ceremony {
-      margin: 12px 0;
-      color: var(--gold-light);
-      font-size: 27px;
-      font-weight: 400;
-    }
+.ornament {
+  margin: 12px auto;
+  color: #bd9a53;
+  font-size: 20px;
+}
 
-    .divider {
-      width: 66%;
-      height: 1px;
-      margin: 20px auto;
-      background: linear-gradient(to right, transparent, var(--gold-dark), transparent);
-    }
+.date {
+  font-size: 25px;
+  margin: 18px 0;
+  color: #a27c3c;
+  direction: ltr;
+}
 
-    .names {
-      margin: 10px 0;
-      color: var(--gold-light);
-      font-family: "Cormorant Garamond", serif;
-      font-size: clamp(36px, 9vw, 48px);
-      font-weight: 500;
-      direction: ltr;
-    }
+.details {
+  line-height: 2.2;
+  font-size: 15px;
+  color: #51432b;
+  font-family: Tahoma, sans-serif;
+}
 
-    .date {
-      margin: 10px 0;
-      color: var(--gold-light);
-      font-size: 28px;
-    }
+.signature {
+  margin-top: 25px;
+  font-size: 13px;
+  letter-spacing: 3px;
+}
 
-    .time {
-      margin: 4px 0;
-      font-size: 26px;
-    }
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
 
-    .venue {
-      color: var(--muted);
-      font-size: 20px;
-      line-height: 1.8;
-    }
+.envelope.open .seal {
+  opacity: 0;
+  transition: .3s;
+}
 
-    .countdown-title {
-      margin: 18px 0 10px;
-      color: var(--gold-light);
-      font-size: 19px;
-    }
+.envelope.open .card {
+  min-height: 510px;
+  top: -405px;
+  opacity: 1;
+  visibility: visible;
+  z-index: 6;
+  padding: 28px 15px;
+  box-shadow: 0 10px 30px #0009;
+}
 
-    .countdown {
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-      direction: rtl;
-    }
+.hint {
+  margin-top: 30px;
+  color: #e0c78d;
+  font-size: 16px;
+  animation: pulse 1.5s infinite;
+  font-family: Tahoma, sans-serif;
+}
 
-    .count-box {
-      min-width: 66px;
-      padding: 9px 5px;
-      border: 1px solid rgba(158, 128, 70, 0.7);
-      background: rgba(255, 255, 255, 0.025);
-    }
+@keyframes pulse {
+  50% { opacity: .4; }
+}
 
-    .count-number {
-      display: block;
-      color: var(--gold-light);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 27px;
-      line-height: 1.1;
-    }
+.bottom-decoration {
+  margin-top: 35px;
+  font-size: 19px;
+  letter-spacing: 5px;
+  color: #e3c47d;
+}
 
-    .count-label {
-      display: block;
-      margin-top: 5px;
-      color: var(--muted);
-      font-size: 14px;
-    }
+@media(max-width:400px) {
+  .envelope.open .card {
+    top: -405px;
+  }
 
-    .actions {
-      display: grid;
-      gap: 10px;
-      margin: 24px auto 0;
-      max-width: 320px;
-    }
-
-    .button {
-      display: inline-flex;
-      min-height: 46px;
-      justify-content: center;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 16px;
-      border: 1px solid var(--gold-dark);
-      color: var(--gold-light);
-      background: rgba(215, 189, 122, 0.07);
-      font: inherit;
-      font-size: 17px;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background 180ms ease, transform 180ms ease;
-    }
-
-    .button:hover {
-      background: rgba(215, 189, 122, 0.16);
-      transform: translateY(-2px);
-    }
-
-    .button:focus-visible {
-      outline: 2px solid var(--gold-light);
-      outline-offset: 3px;
-    }
-
-    .footer {
-      margin-top: 23px;
-      color: var(--gold-dark);
-      font-family: "Cormorant Garamond", serif;
-      font-size: 18px;
-      direction: ltr;
-    }
-
-    @keyframes appear {
-      from {
-        opacity: 0;
-        transform: translateY(14px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @media (max-width: 380px) {
-      body {
-        padding: 18px 10px;
-      }
-
-      .invitation {
-        padding: 42px 20px 28px;
-      }
-
-      .countdown {
-        gap: 6px;
-      }
-
-      .count-box {
-        min-width: 58px;
-      }
-
-      .venue {
-        font-size: 18px;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-  </style>
+  .card h2 {
+    font-size: 25px;
+  }
+}
+</style>
 </head>
 
 <body>
-  <main class="invitation">
-    <div class="eyebrow">بسم الله المحبة والبركة</div>
-    <div class="ornament" aria-hidden="true">✧ ❦ ✧</div>
 
-    <p class="intro">بكل الحب والفرح<br>يسعدنا دعوتكم لمشاركتنا</p>
+<div class="scene">
 
-    <h2 class="ceremony">صلاة الإكليل</h2>
-    <div class="divider" aria-hidden="true"></div>
+  <div class="top-decoration">✧ ❦ ✧</div>
 
-    <h1 class="names">Hossam &amp; Rodica</h1>
-    <div class="ornament" aria-hidden="true">❦</div>
+  <div class="heading">
+    YOU ARE INVITED
+  </div>
 
-    <p class="intro">وذلك يوم الخميس</p>
-    <div class="date">12 نوفمبر 2026</div>
+  <div class="envelope" id="envelope"
+       onclick="openInvitation()">
 
-    <p class="intro">في تمام الساعة</p>
-    <div class="time">8:00 مساءً</div>
+    <div class="card">
 
-    <div class="divider" aria-hidden="true"></div>
+      <div class="ornament">✦ WEDDING INVITATION ✦</div>
 
-    <div class="venue">
-      مطرانية أم المحبة الإلهية<br>
-      للأقباط الكاثوليك بأسيوط
+      <p>بكل الحب والفرح</p>
+
+      <h2>Hossam & Rodica</h2>
+
+      <div class="ornament">❧ ✦ ❧</div>
+
+      <p>
+        يسعدنا دعوتكم لمشاركتنا فرحة زفافنا
+        <br>
+        وحضور صلاة الإكليل
+      </p>
+
+      <div class="date">12 . 11 . 2026</div>
+
+      <p>الساعة 8 مساءً</p>
+
+      <div class="ornament">──── ✦ ────</div>
+
+      <div class="details">
+        كاتدرائية أم المحبة الإلهية
+        <br>
+        للأقباط الكاثوليك بأسيوط
+        <br><br>
+        حفل الاستقبال
+        <br>
+        فندق رويال
+      </div>
+
+      <div class="signature">
+        WITH LOVE & JOY
+      </div>
+
+      <div class="ornament">❦</div>
+
     </div>
 
-    <p class="countdown-title">الوقت المتبقي على فرحتنا</p>
+    <div class="flap"></div>
 
-    <div class="countdown" aria-label="العد التنازلي لموعد الزفاف">
-      <div class="count-box">
-        <span class="count-number" id="days">--</span>
-        <span class="count-label">يوم</span>
-      </div>
-      <div class="count-box">
-        <span class="count-number" id="hours">--</span>
-        <span class="count-label">ساعة</span>
-      </div>
-      <div class="count-box">
-        <span class="count-number" id="minutes">--</span>
-        <span class="count-label">دقيقة</span>
-      </div>
-      <div class="count-box">
-        <span class="count-number" id="seconds">--</span>
-        <span class="count-label">ثانية</span>
-      </div>
-    </div>
+    <div class="seal">H&R</div>
 
-    <div class="actions">
-      <button class="button" type="button" id="shareButton">
-        مشاركة الدعوة
-      </button>
+  </div>
 
-      <a
-        class="button"
-        href="https://www.google.com/maps/search/?api=1&amp;query=%D9%85%D8%B7%D8%B1%D8%A7%D9%86%D9%8A%D8%A9%20%D8%A3%D9%85%20%D8%A7%D9%84%D9%85%D8%AD%D8%A8%D8%A9%20%D8%A7%D9%84%D8%A5%D9%84%D9%87%D9%8A%D8%A9%20%D8%A3%D8%B3%D9%8A%D9%88%D8%B7"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        فتح الموقع على الخريطة
-      </a>
+  <div class="hint" id="hint">
+    اضغطي لفتح الدعوة ♡
+  </div>
 
-      <button class="button" type="button" id="calendarButton">
-        إضافة الموعد للتقويم
-      </button>
-    </div>
+  <div class="bottom-decoration">
+    ✦ H & R ✦
+  </div>
 
-    <div class="ornament" aria-hidden="true">✧</div>
-    <p class="intro">حضوركم يزيد فرحتنا جمالاً</p>
-    <div class="footer">With Love • Hossam &amp; Rodica</div>
-  </main>
+</div>
 
-  <script>
-    // موعد الحفل: 12 نوفمبر 2026، الساعة 8 مساءً بتوقيت أسيوط (UTC+2).
-    const weddingDate = new Date("2026-11-12T18:00:00Z");
+<audio id="weddingMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-    const countdownElements = {
-      days: document.getElementById("days"),
-      hours: document.getElementById("hours"),
-      minutes: document.getElementById("minutes"),
-      seconds: document.getElementById("seconds")
-    };
+<script>
+function openInvitation() {
 
-    function updateCountdown() {
-      const remaining = weddingDate.getTime() - Date.now();
+  const envelope = document.getElementById("envelope");
 
-      if (remaining <= 0) {
-        document.querySelector(".countdown-title").textContent =
-          "يسعدنا الاحتفال معكم!";
-        Object.values(countdownElements).forEach(element => {
-          element.textContent = "0";
-        });
-        return;
-      }
+  if (envelope.classList.contains("open")) return;
 
-      const secondsTotal = Math.floor(remaining / 1000);
+  envelope.classList.add("open");
 
-      countdownElements.days.textContent =
-        Math.floor(secondsTotal / 86400);
+  document.getElementById("hint").style.display = "none";
 
-      countdownElements.hours.textContent =
-        Math.floor((secondsTotal % 86400) / 3600);
+  const music = document.getElementById("weddingMusic");
 
-      countdownElements.minutes.textContent =
-        Math.floor((secondsTotal % 3600) / 60);
+  music.volume = 0.5;
 
-      countdownElements.seconds.textContent =
-        secondsTotal % 60;
-    }
+  music.play().catch(() => {
+    console.log("تعذر تشغيل الموسيقى");
+  });
+}
+</script>
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-
-    const invitationText =
-      "يسعدنا دعوتكم لحضور صلاة إكليل حسام ورودكا يوم الخميس 12 نوفمبر 2026، الساعة 8:00 مساءً، في مطرانية أم المحبة الإلهية للأقباط الكاثوليك بأسيوط.";
-
-    document.getElementById("shareButton").addEventListener("click", async () => {
-      if (navigator.share) {
-        try {
-          await navigator.share({
-            title: "دعوة زفاف حسام ورودكا",
-            text: invitationText,
-            url: window.location.href
-          });
-        } catch (error) {
-          // قد يغلق المستخدم نافذة المشاركة؛ لا حاجة لإظهار خطأ.
-        }
-      } else if (navigator.clipboard) {
-        try {
-          await navigator.clipboard.writeText(
-            invitationText + "\n" + window.location.href
-          );
-          alert("تم نسخ نص الدعوة!");
-        } catch (error) {
-          alert(invitationText);
-        }
-      } else {
-        alert(invitationText);
-      }
-    });
-
-    document.getElementById("calendarButton").addEventListener("click", () => {
-      const calendarEvent = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Wedding Invitation//AR",
-        "BEGIN:VEVENT",
-        "UID:hossam-rodica-wedding-20261112@example.com",
-        "DTSTAMP:20260101T000000Z",
-        "DTSTART:20261112T180000Z",
-        "DTEND:20261112T200000Z",
-        "SUMMARY:صلاة إكليل حسام ورودكا",
-        "LOCATION:مطرانية أم المحبة الإلهية للأقباط الكاثوليك بأسيوط",
-        "DESCRIPTION:يسعدنا مشاركتكم فرحتنا",
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\r\n");
-
-      const file = new Blob([calendarEvent], {
-        type: "text/calendar;charset=utf-8"
-      });
-
-      const downloadUrl = URL.createObjectURL(file);
-      const link = document.createElement("a");
-
-      link.href = downloadUrl;
-      link.download = "hossam-rodica-wedding.ics";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-
-      URL.revokeObjectURL(downloadUrl);
-    });
-  </script>
 </body>
 </html>
